@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="600.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1">
+    <children>
+        <Label layoutX="91.0" layoutY="327.0" text="CUSTOMER">
+         <font>
+            <Font size="15.0" />
+         </font></Label>
+        <Label layoutX="18.0" layoutY="66.0" text="APPOINTMENT">
+         <font>
+            <Font size="15.0" />
+         </font></Label>
+        <Button layoutX="370.0" layoutY="262.0" mnemonicParsing="false" onMouseClicked="#goToAddAppointment" text="ADD" />
+        <Button layoutX="510.0" layoutY="262.0" mnemonicParsing="false" onMouseClicked="#deleteAppointment" text="DELETE" />
+        <Button layoutX="385.0" layoutY="527.0" mnemonicParsing="false" onMouseClicked="#goToAddCustomer" text="ADD" />
+        <Button layoutX="442.0" layoutY="527.0" mnemonicParsing="false" onMouseClicked="#deleteCustomer" text="DELETE" />
+        <TableView fx:id="customerTable" layoutX="91.0" layoutY="354.0" prefHeight="162.0" prefWidth="419.0">
+            <columns>
+                <TableColumn fx:id="cusIdCol" prefWidth="37.0" text="ID" />
+                <TableColumn fx:id="cusNameCol" onEditCommit="#updateCustomerName" prefWidth="116.0" text="NAME" />
+                <TableColumn fx:id="cusAddressCol" onEditCommit="#updateCustomerAddress" prefWidth="144.0" text="ADDRESS LINE 1" />
+                <TableColumn fx:id="cusPhoneCol" onEditCommit="#updateCustomerPhone" prefWidth="121.0" text="PHONE" />
+            </columns>
+        </TableView>
+        <TableView fx:id="appointmentTable" editable="true" layoutX="17.0" layoutY="91.0" prefHeight="162.0" prefWidth="566.0">
+            <columns>
+                <TableColumn fx:id="appIdCol" prefWidth="38.0" text="ID" />
+                <TableColumn fx:id="appTypeCol" prefWidth="79.0" text="TYPE" />
+                <TableColumn fx:id="appCusNameCol" prefWidth="122.0" text="CUSTOMER NAME" />
+                <TableColumn fx:id="appStartTimeCol" minWidth="0.0" prefWidth="168.0" text="START TIME" />
+                <TableColumn fx:id="appEndTimeCol" minWidth="0.0" prefWidth="158.0" text="END TIME" />
+            </columns>
+        </TableView>
+        <Label fx:id="customerErrorLabel" alignment="BOTTOM_CENTER" layoutX="186.0" layoutY="300.0" prefHeight="45.0" prefWidth="385.0" text="PLEASE DELETE ALL APPOINTMENTS FOR THIS CUSTOMER FIRST" textAlignment="CENTER" textFill="RED" wrapText="true" />
+        <Label fx:id="appointmentErrorLabel" alignment="CENTER" layoutX="16.0" layoutY="252.0" prefHeight="34.0" prefWidth="346.0" text="PLEASE SELECT A CUSTOMER TO ADD AN  APPOINTMENT" textAlignment="CENTER" textFill="RED" wrapText="true" />
+        <Label layoutX="134.0" layoutY="518.0" prefHeight="45.0" prefWidth="244.0" text="Double-click on cells to edit them. Press 'Enter' to UPDATE them." textAlignment="CENTER" textFill="#0717c6" wrapText="true">
+         <font>
+            <Font size="16.0" />
+         </font></Label>
+        <Button layoutX="429.0" layoutY="262.0" mnemonicParsing="false" onMouseClicked="#goToUpdateAppointment" text="UPDATE" />
+        <Button layoutX="440.0" layoutY="14.0" mnemonicParsing="false" onMouseClicked="#goToReports" prefHeight="27.0" prefWidth="142.0" text="GO TO REPORTS" />
+        <HBox alignment="CENTER" layoutX="240.0" layoutY="61.0" prefHeight="27.0" prefWidth="244.0" spacing="10.0">
+        <children>
+            <RadioButton fx:id="allRadioButton" mnemonicParsing="false" onMouseClicked="#filterByAll" text="All">
+            <toggleGroup>
+                <ToggleGroup fx:id="buttonToggleGroup" />
+            </toggleGroup>
+            </RadioButton>
+            <RadioButton fx:id="monthRadioButton" mnemonicParsing="false" onMouseClicked="#filterByMonth" text="This Month">
+                <toggleGroup>
+                    <fx:reference source="buttonToggleGroup" />
+                </toggleGroup>
+            </RadioButton>
+        <RadioButton fx:id="weekRadioButton" mnemonicParsing="false" onMouseClicked="#filterByWeek" text="This Week">
+            <toggleGroup>
+                <fx:reference source="buttonToggleGroup" />
+            </toggleGroup>
+        </RadioButton>
+    </children>
+</HBox>
+<Label layoutX="140.0" layoutY="66.0" text="Filter results by:" />
+      <Label fx:id="timeZoneLabel" alignment="CENTER_RIGHT" layoutX="327.0" layoutY="289.0" prefHeight="17.0" prefWidth="260.0" text="*Eastern Standard Time" textAlignment="RIGHT" textFill="#1459b8" />
+      <Label alignment="CENTER_RIGHT" layoutX="435.0" layoutY="306.0" text="Times are in 24-hour format" textAlignment="RIGHT" textFill="#1459b8" />
+        </children>
+        </AnchorPane>
